@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
-// const media = {
-//   Tablet: "",
-// };
+const media = {
+  mobile: "(max-width: 500px)",
+  tablet: "(max-width: 740px)",
+  MinLaptop: "(max-width: 890px)",
+};
 
 const NavbarDesign = styled.div`
   height: 80px;
@@ -10,7 +12,7 @@ const NavbarDesign = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 10px 15px;
-  background-color: rgba(28, 43, 75, 1);
+  background-color: var(--navbar-background-color);
   color: white;
   width: 100vw;
 `;
@@ -24,10 +26,19 @@ const Title = styled.div`
   color: var(--title-color);
 
   cursor: pointer;
+
+  @media ${media.MinLaptop} {
+    font-size: 25px;
+  }
+  @media ${media.tablet} {
+    font-size: 20px;
+  }
 `;
 
 const Links = styled.div`
   display: flex;
+  align-items: center;
+
   gap: 25px;
   a {
     color: white;
@@ -54,6 +65,63 @@ const Links = styled.div`
       width: 100%;
     }
   }
+  .option {
+    display: none;
+  }
+
+  @media ${media.MinLaptop} {
+    a {
+      font-size: 13px;
+    }
+  }
+
+  @media ${media.tablet} {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100%;
+
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    display: ${({ bar }) => (bar ? "flex" : "none")};
+    background-color: var(--navbar-background-color);
+    .option {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+      width: 100%;
+      padding: 10px 15px;
+      .title {
+      }
+      .close {
+        display: flex;
+        font-size: 20px;
+      }
+    }
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+      width: 100%;
+      height: 80px;
+      overflow: auto;
+      text-align: center;
+      padding: 15px 0;
+
+      &::after {
+        width: 0 !important;
+      }
+    }
+  }
 `;
 
 const Options = styled.div`
@@ -76,6 +144,12 @@ const Options = styled.div`
 
   .fa-bars {
     display: none;
+  }
+
+  @media ${media.tablet} {
+    .fa-bars {
+      display: flex;
+    }
   }
 `;
 
